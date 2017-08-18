@@ -2,12 +2,9 @@
 /// Mostly consists of components for specs.
 
 use ::cgmath::{Rad, Point2, Vector2};
+use ::ggez::graphics::Image;
 use ::specs::{Entity, HashMapStorage, VecStorage, World};
 use ::std::sync::Arc;
-
-/// --- Resources ---
-
-pub struct DeltaTime(pub f64);
 
 /// --- Components ---
 
@@ -44,13 +41,11 @@ pub struct Velocity {
 #[derive(Component)]
 #[component(HashMapStorage)]
 pub struct Control {
-    pub thrust_speed: f64,
-    pub turn_speed: f64,
+    pub move_speed: f64,
 }
 
 #[derive(Component)]
 #[component(VecStorage)]
 pub struct Render {
-    //pub tex: Arc<Texture>,
+    pub tex: Arc<Image>,
 }
-

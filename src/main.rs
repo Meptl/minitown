@@ -1,7 +1,3 @@
-#![deny(missing_docs)]
-
-//! A Sudoku game.
-
 extern crate cgmath;
 extern crate ggez;
 extern crate specs;
@@ -16,7 +12,7 @@ const NAME: &'static str = "Mini Town";
 fn main() {
     let c = ggez::conf::Conf::new();
     let ctx = &mut ggez::Context::load_from_conf(NAME, "ggez", c).unwrap();
-    let state = &mut mainstate::MainState::new().unwrap();
+    let state = &mut mainstate::MainState::new(ctx).unwrap();
     ggez::event::run(ctx, state).unwrap();
 }
 
