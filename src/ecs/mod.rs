@@ -14,6 +14,9 @@ pub fn registered_world() -> ::specs::World {
 
     world.add_resource(resources::Input::default());
 
+    // This will be updated in every update tick.
+    world.add_resource(resources::DeltaTime(0.05));
+
     world
 }
 

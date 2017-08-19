@@ -2,18 +2,18 @@
 use ::specs;
 use ::specs::{Fetch, Join, ReadStorage, WriteStorage};
 use ecs::components::*;
+use ecs::resources;
 
 pub struct System;
 
 impl<'a> specs::System<'a> for System {
-    type SystemData = (Fetch<'a, ::std::time::Duration>,
+    type SystemData = (Fetch<'a, resources::DeltaTime>,
                        WriteStorage<'a, Transform>,
                        ReadStorage<'a, Velocity>);
 
     fn run(&mut self, data: Self::SystemData) {
-        let (duration, mut transform, velocity) = data;
-
-        let dt = duration.as_secs() as f64 + duration.subsec_nanos() as f64 * 1e-9;
+        let (dt, mut transform, velocity) = data;
+        let dt = dt.0;
 
         for (trans, vel) in (&mut transform, &velocity).join() {
             trans.pos[0] += vel.spatial[0] * dt;

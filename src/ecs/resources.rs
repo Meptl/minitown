@@ -1,7 +1,11 @@
+/// DurationWrapper
+pub struct DeltaTime(pub f64);
+
 /// Resource over relevant input.
 pub struct Input {
     pub mouse_location: (i32, i32),
     pub mouse_click: Option<(i32, i32)>,
+    pub mouse_wheel: Option<(i32, i32)>,
     pub up: bool,
     pub down: bool,
     pub left: bool,
@@ -29,6 +33,7 @@ impl Default for Input {
         Input {
             mouse_location: (0, 0),
             mouse_click: None,
+            mouse_wheel: None,
             up: false,
             down: false,
             left: false,
